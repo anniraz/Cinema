@@ -1,0 +1,97 @@
+{% load static %}
+<div class="wrapper">
+    <!-- Banner -->
+    
+
+    <!-- Header section -->
+    <header class="header-wrapper header-wrapper--home">
+        <div class="container">
+            <!-- Logo link-->
+            <a href='index.html' class="logo">
+                <img alt='logo' src="{% static 'assets/images/logo.png'%}">
+            </a>
+            
+            <!-- Main website navigation-->
+            <nav id="navigation-box">
+                <!-- Toggle for mobile menu mode -->
+                <a href="#" id="navigation-toggle">
+                    <span class="menu-icon">
+                        <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
+                          <span class="lines"></span>
+                        </span>
+                    </span>
+                </a>
+                
+                <!-- Link navigation -->
+                <ul id="navigation">
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a href="#">Pages</a>
+                        <ul>
+                            <li class="menu__nav-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="menu__nav-item"><a href="{% url 'book' %}">Book a ticket</a></li>
+                            <li class="menu__nav-item"><a href="{% url 'news' %}"> News</a></li>
+                            <li class="menu__nav-item"><a href="{% url 'movie_list' %}">Movies</a></li>
+                        </ul>
+                    </li>
+                    
+
+                 
+
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a href="#">Mega menu</a>
+                           <ul class="mega-menu container">
+                                <li class="col-md-3 mega-menu__coloum">
+                                    <h4 class="mega-menu__heading">Now in the cinema</h4>
+                                     <ul class="mega-menu__list">
+                                         {% for movie in movie_all %}
+                                        <li class="mega-menu__nav-item"><a href="{% url 'detail_movie' movie.id %}">{{movie.name}}</a></li>
+                                        {% endfor %}
+                                      </ul>
+                                  </li>
+                                    
+                                  
+                                  <li class="col-md-3 mega-menu__coloum">
+                                    <h4 class="mega-menu__heading">Ending soon</h4>
+                                      <ul class="mega-menu__list">
+                                          {% for ending  in endingsoon %}
+                                        <li class="mega-menu__nav-item"><a href="#">{{ending.name}}</a></li>
+                                        {% endfor %}
+                                      </ul>
+                                  </li>
+                                
+                            
+                           </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Additional header buttons / Auth and direct link to booking-->
+            <div class="control-panel">
+                <div class="auth auth--home">
+                  <div class="auth__show">
+                    <span class="auth__image">
+                      </span>
+                    </div>
+                    <a href="index.html#" class="btn btn--sign btn--singin">
+                        {% if user.is_authenticated %}
+                        {{user.username}}
+                    </a>
+                        <ul class="auth__function">
+                            <li><a href="{% url 'logout' %}" class="auth__function-item">logout</a></li>
+                        </ul>
+                        {% else %}
+                        guest
+                        <ul class="auth__function">
+                            <li><a href="{% url 'login' %}" class="auth__function-item">login </a></li>
+                            <li><a href="{% url 'register' %}" class="auth__function-item">register</a></li>
+                        </ul>
+                        {% endif %}
+
+                    </div>
+                        <a href="{% url 'book' %}" class="btn btn-md btn--warning btn--book ">Book a ticket</a>
+            </div>
+
+        </div>
+    </header>

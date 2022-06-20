@@ -1,0 +1,23 @@
+{% extends 'home_base.html' %}
+
+{% block main %}
+
+
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                    <h2>{{news.title}}</h2>
+                    <img src="{{news.image.url}}" style="width: 400px;" alt="">
+             
+                    <p>{{news.description|safe|linebreaks}}</p>
+                    
+
+             </div>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

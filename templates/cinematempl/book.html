@@ -1,0 +1,40 @@
+{% extends 'home_base.html' %}
+
+{% block main %}
+
+<section class="container">
+        <div class="order-container">
+            <div class="order">
+                <img class="order__images" alt='' src="images/tickets.png">
+                <p class="order__title">Book a ticket <br><span class="order__descript">and have fun movie time</span></p>
+            </div>
+        </div>
+</section>
+
+<div class="conteiner">
+        <div class="row">
+                <div class="col-8">
+                        <div style="padding:0px  200px;">
+                                <h3>  Забронировать </h3> <br>
+                        <form action="{% url 'book'%}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                                {{ form.as_p }}
+                                {{ form.media }}
+                                
+                                <button class="btn btn-success" type="submit"> Добавить </button>
+                                
+                                
+                        </form>
+                </div>
+        </div>
+        
+      
+
+
+
+
+
+        </div>
+</div>
+{% endblock  %}

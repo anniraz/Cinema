@@ -1,0 +1,32 @@
+{% extends 'home_base.html' %}
+
+
+
+{% block main %}
+
+<div style="margin-top: 100px;" class="col-sm-12">
+    <h2 class="page-heading">News</h2>
+    {% for n in news  %}
+    
+
+    <div class="col-sm-4 similar-wrap col--remove">
+        <div class="post post--preview post--preview--wide">
+            <div class="post__image">
+                <img alt='' style="object-fit: cover;"  height="200px" width="180px" src="{{n.image.url}}">
+                <div class="social social--position social--hide">
+                    <span class="social__name">Share:</span>
+                    <a href='#' class="social__variant social--first fa fa-facebook"></a>
+                    <a href='#' class="social__variant social--second fa fa-twitter"></a>
+                    <a href='#' class="social__variant social--third fa fa-vk"></a>
+                </div>
+            </div>
+            <a href="{% url 'news_detail' n.id %}" class="post__title">{{n.description |truncatewords:3|safe}}</a>
+            <a href="{% url 'news_detail' n.id %}" class="btn read-more post--btn">read more</a>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+{% endblock  %}

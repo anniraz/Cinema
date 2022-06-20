@@ -1,0 +1,132 @@
+
+
+<!-- Today Best choice -->
+<section class="container">
+    <div class="movie-best">
+        <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Today Best choice</div>
+            <div class="col-sm-12 change--col">
+                {% for m in movie1 %}
+                    <div class="movie-beta__item ">
+                        <img alt='' style="object-fit: cover;" height="280px" width="190px" src="{{m.poster.url}}">
+                       <a href="{%  url 'detail_movie' m.id %}"> <span class="best-rate">5.0</span></a>
+
+                        <ul class="movie-beta__info">
+                            <li><span class="best-voted">{{m.name}}</span></li>
+                            <li>
+                                <p class="movie__time">169 min</p>
+                                <p>Adventure | Drama | Fantasy </p>
+                                <p>38 comments</p>
+                            </li>
+                            <li class="last-block">
+                            <a href="{%  url 'detail_movie' m.id %}" class="slide__link">more</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+         <!-- 2 -->
+                {% for m in movies %}
+                <div class="movie-beta__item second--item">
+                    <img alt='' style="object-fit: cover;" height="280px" width="190px" src="{{m.poster.url}}">
+                    <a href="{%  url 'detail_movie' m.id %}"><span class="best-rate">5.0</span></a>
+
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">{{m.name}}</span></li>
+                        <li>
+                            <p class="movie__time">169 min</p>
+                            <p>Adventure | Drama | Fantasy </p>
+                            <p>38 comments</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="{%  url 'detail_movie' m.id %}" class="slide__link">more</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endfor %}
+           
+
+            <!-- 3 -->
+            {% for m in movie3 %}
+            <div class="movie-beta__item third--item">
+                <img alt='' style="object-fit: cover;" height="280px" width="190px" src="{{m.poster.url}}">
+                <a href="{%  url 'detail_movie' m.id %}"><span class="best-rate">5.0</span></a>
+
+                <ul class="movie-beta__info">
+                    <li><span class="best-voted">{{m.name}}</span></li>
+                    <li>
+                       <p class="movie__time">169 min</p>
+                       <p>Adventure | Drama | Fantasy </p>
+                       <p>38 comments</p>
+                    </li>
+                    <li class="last-block">
+                        <a href="{%  url 'detail_movie' m.id %}" class="slide__link">more</a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+            <!-- 4 -->
+            {% for m in movie4 %}
+            <div class="movie-beta__item hidden-xs">
+                <img alt='' style="object-fit: cover;" height="280px" width="190px" src="{{m.poster.url}}">
+               <a href="{%  url 'detail_movie' m.id %}"> <span class="best-rate">5.0</span></a>
+
+                <ul class="movie-beta__info">
+                    <li><span class="best-voted">{{m.name}}</span></li>
+                    <li>
+                       <p class="movie__time">169 min</p>
+                       <p>Adventure | Drama | Fantasy </p>
+                       <p>38 comments</p>
+                    </li>
+                    <li class="last-block">
+                        <a href="{%  url 'detail_movie' m.id %}" class="slide__link">more</a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+
+            <!-- 5 -->
+            {% for m in movie5 %}
+            <div class="movie-beta__item hidden-xs hidden-sm">
+                <img alt='' style="object-fit: cover;" height="280px" width="190px" src="{{m.poster.url}}">
+                <a href="{%  url 'detail_movie' m.id %}"><span class="best-rate">5.0</span></a>
+
+                <ul class="movie-beta__info">
+                    <li><span class="best-voted">{{m.name}}</span></li>
+                    <li>
+                       <p class="movie__time">169 min</p>
+                       <p>Adventure | Drama | Fantasy </p>
+                       <p>38 comments</p>
+                    </li>
+                    <li class="last-block">
+                        <a href="{%  url 'detail_movie' m.id %}" class="slide__link">more</a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+            <!-- 6 -->
+            {% for m in movie6 %}
+            <div class="movie-beta__item hidden-xs hidden-sm">
+                <img alt='' style="object-fit: cover;"  height="280px" width="190px" src="{{m.poster.url}}">
+               <a href="{%  url 'detail_movie' m.id %}"> <span class="best-rate">5.0</span></a>
+
+                <ul class="movie-beta__info">
+                    <li><span class="best-voted">{{m.name}}</span></li>
+                    <li>
+                       <p class="movie__time">169 min</p>
+                       <p>Adventure | Drama | Fantasy </p>
+                       <p>38 comments</p>
+                    </li>
+                    <li class="last-block">
+                        <a href="{%  url 'detail_movie' m.id %}" class="slide__link">more</a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+            <div class="col-sm-10 col-sm-offset-1 movie-best__check">check all movies now playing</div>
+        </div>
+    </div>
+    
+    
+    
+    
+</div>
+</section>

@@ -1,0 +1,165 @@
+{% load static %}
+<!-- Slider -->
+
+
+<!-- Main content -->
+
+<!-- Today Best choice -->
+
+<!-- Today Best choice/ -->
+
+
+    <div class="col-sm-12">
+        <div class="mega-select-present mega-select-top mega-select--full">
+            <div class="mega-select-marker">
+                <div class="marker-indecator location">
+                    <p class="select-marker"><span>movie to watch now</span> <br>in your city</p>
+                </div>
+
+                <div class="marker-indecator cinema">
+                    <p class="select-marker"><span>find your </span> <br>cinema</p>
+                </div>
+
+                <div class="marker-indecator film-category">
+                    <p class="select-marker"><span>find movie due to </span> <br> your mood</p>
+                </div>
+
+                <div class="marker-indecator actors">
+                    <p class="select-marker"><span> like particular stars</span> <br>find them</p>
+                </div>
+
+                <div class="marker-indecator director">
+                    <p class="select-marker"><span>admire personalities - find </span> <br>by director</p>
+                </div>
+
+                <div class="marker-indecator country">
+                    <p class="select-marker"><span>search for movie from certain </span> <br>country?</p>
+                </div>
+            </div>
+
+              <div class="mega-select pull-right">
+                  <span class="mega-select__point">Search by</span>
+                  <ul class="mega-select__sort">
+                      <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='film-category'>Title</a></li>
+                  </ul>
+
+                <form >
+                  <input name="search-input" type='text' class="select__field">
+
+                  <button name="search_button">  <a href="#" class="btn btn-md btn--danger film-category"><span class="hidden-exrtasm">search</span></a></button>
+                </form>
+
+                 
+
+
+    </div>
+    
+    <div class="clearfix"></div>
+
+    <h2 id='target' class="page-heading heading--outcontainer">Now in the cinema</h2>
+                
+                <!-- Movie variant with time -->
+                {% for m in movie_all %}
+                    <div class="movie movie--test movie--test--dark movie--test--left">
+                        <div class="movie__images">
+                            <a href="#" class="movie-beta__link">
+                                <img alt='' style="object-fit: cover;" height="200px" width="400px" src="{{m.poster.url}}">
+                            </a>
+                        </div>
+
+                        <div class="movie__info">
+                            <a href="{%  url 'detail_movie' m.id %}" class="movie__title">{{m.name}}  </a>
+
+
+                            <p class="movie__option"><a href="#"> {% for i in m.genre.all %} | <a href="#">{{i}}</a> | {% endfor %}</p>
+                                         
+                        </div>
+                    </div>
+                {% endfor %}
+                 <!-- Movie variant with time -->
+
+                 
+                 <!-- Movie variant with time -->
+
+                 <!-- Movie variant with time -->
+                
+                 <!-- Movie variant with time -->
+
+
+               
+
+
+    </div>
+
+    <div class="col-sm-12">
+        <h2 class="page-heading">Latest news</h2>
+        {% for n in news  %}
+        
+
+        <div class="col-sm-4 similar-wrap col--remove">
+            <div class="post post--preview post--preview--wide">
+                <div class="post__image">
+                    <img alt='' style="object-fit: cover;"  height="200px" width="180px" src="{{n.image.url}}">
+                 
+                </div>
+                <a href="{% url 'news_detail' n.id %}" class="post__title">{{n.description |truncatewords:3|safe}}</a>
+                <a href="{% url 'news_detail' n.id %}" class="btn read-more post--btn">read more</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+        
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!-- open/close -->
+<div class="overlay overlay-hugeinc">
+    
+    <section class="container">
+
+        <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" class="overlay-close">Close</button>
+            <form id="login-form" class="login" method='get' novalidate=''>
+                <p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p>
+
+                <div class="social social--colored">
+                        <a href='#' class="social__variant fa fa-facebook"></a>
+                        <a href='#' class="social__variant fa fa-twitter"></a>
+                        <a href='#' class="social__variant fa fa-tumblr"></a>
+                </div>
+
+                <p class="login__tracker">or</p>
+                
+                <div class="field-wrap">
+                <input type='email' placeholder='Email' name='user-email' class="login__input">
+                <input type='password' placeholder='Password' name='user-password' class="login__input">
+
+                <input type='checkbox' id='#informed' class='login__check styled'>
+                <label for='#informed' class='login__check-info'>remember me</label>
+                 </div>
+                
+                <div class="login__control">
+                    <button type='submit' class="btn btn-md btn--warning btn--wider">sign in</button>
+                    <a href="#" class="login__tracker form__tracker">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+
+    </section>
+</div>

@@ -1,0 +1,58 @@
+{% extends 'home_base.html' %}
+
+{% block main %}
+
+{% for m in movies %}
+
+<div style="margin-top: 100px; margin-left:100px">
+<div class="movie movie--preview release">
+    <div class="col-sm-5 col-md-3">
+           <div class="movie__images">
+               <img alt=''  style="object-fit: cover;" height="400px" width="290px"  src="{{m.poster.url}}">
+           </div>
+           <div class="movie__feature">
+              
+           </div>
+   </div>
+
+   <div class="col-sm-7 col-md-9">
+           <a href="{%  url 'detail_movie' m.id %}" class="movie__title link--huge">{{m.name}}</a>
+
+
+           <p class="movie__option"><strong>Country: </strong><a href="#">{{m.country}}</a>
+            <p class="movie__option"><strong>Year: </strong><a href="#">{{m.year}}</a></p>
+            <p class="movie__option"><strong>Ganre: 
+            {% for mov_gen in m.genre.all %}
+            </strong><a href="#">{{mov_gen.name}}</a>
+            {% endfor %}
+            </p>
+            {% for d in  m.director.all %}
+            <p class="movie__option"><strong>Director: </strong><a href="#">{{d}}</a>
+            {% endfor %}</p>
+            
+            <p class="movie__option"><strong>Actors: </strong> {% for actor in  m.actors.all %} 
+                <a href="#">{{actor}}</a> <br>
+            {% endfor %}</p>
+            <p class="movie__option"><strong>Age restriction: </strong><a href="#">{{m.age_restriction}}</a></p>
+
+
+           <div class="movie__btns">
+           </div>
+
+           <div class="preview-footer">
+               
+
+           </div>
+   </div>
+
+  
+   </div>
+   <!-- end time table-->
+
+</div>
+</div>
+{% endfor %}
+<!-- end movie preview item -->
+
+        
+{% endblock %}

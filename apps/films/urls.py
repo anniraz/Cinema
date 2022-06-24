@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import handler404
 
 from apps.films.views import *
 
@@ -18,8 +19,11 @@ urlpatterns = [
     path('register/',RegisterUser.as_view(), name='register'),
     path('login/',LoginUser.as_view(),name='login'),
     path('logout/', logout_user, name='logout'),
+    path('contact/',contact,name='contact'),
+    # path('404error/',error_404,name='404')
 ]
 
 
+handler404='apps.films.views.error_404'
 
 

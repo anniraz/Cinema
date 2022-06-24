@@ -1,5 +1,7 @@
 {% extends 'home_base.html' %}
 
+{% load i18n  %}
+
 
 
 {% block main %}
@@ -20,25 +22,25 @@
 
                         <div class="col-sm-6 col-md-8">
 
-                            <p class="movie__option"><strong>Country: </strong><a href="#">{{movie.country}}</a>
-                            <p class="movie__option"><strong>Year: </strong><a href="#">{{movie.year}}</a></p>
-                            <p class="movie__option"><strong>Ganre: 
+                            <p class="movie__option"><strong>{% trans 'Страна' %}: </strong><a href="#">{{movie.country}}</a>
+                            <p class="movie__option"><strong>{% trans 'Год' %}: </strong><a href="#">{{movie.year}}</a></p>
+                            <p class="movie__option"><strong>{% trans 'Жанры' %}: 
                             {% for mov_gen in movie.genre.all %}
                             </strong><a href="#">{{mov_gen.name}}</a>
                             {% endfor %}
                             </p>
                             {% for d in  movie.director.all %}
-                            <p class="movie__option"><strong>Director: </strong><a href="#">{{d}}</a>
+                            <p class="movie__option"><strong>{% trans 'Директор' %}: </strong><a href="#">{{d}}</a>
                             {% endfor %}</p>
                             
-                            <p class="movie__option"><strong>Actors: </strong> {% for actor in  movie.actors.all %} 
+                            <p class="movie__option"><strong>{% trans 'Актеры' %}: </strong> {% for actor in  movie.actors.all %} 
                                 <a href="#">{{actor}}</a> <br>
                             {% endfor %}</p>
-                            <p class="movie__option"><strong>Age restriction: </strong><a href="#">{{movie.age_restriction}}</a></p>
+                            <p class="movie__option"><strong> {% trans 'Возрастное ограничение' %} : </strong><a href="#">{{movie.age_restriction}}</a></p>
 
 
                             <div class="movie__btns">
-                                <a href="{% url 'book' %}" class="btn btn-md btn--warning">book a ticket</a>
+                                <a href="{% url 'book' %}" class="btn btn-md btn--warning">{% trans 'Забронировать билет' %}</a>
                             </div>
 
                             <div class="share">
@@ -58,7 +60,7 @@
 
                     <p class="movie__describe">{{movie.description}} </p>
 
-                    <h2 class="page-heading">Trailer</h2>
+                    <h2 class="page-heading">{% trans 'Трейлер' %}</h2>
                     
                               <!--First Slide-->
                                   <video  class="media-element"  autoplay="autoplay" preload='none' loop="loop" muted="" controls="controls" height="700px", width="700px" src="{{movie.trailer.url}}"></video>
@@ -72,7 +74,7 @@
 
                 <!-- date -->
                     <div class="datepicker">
-                      <span class="datepicker__marker"><i class="fa fa-calendar"></i>Date</span>
+                      <span class="datepicker__marker"><i class="fa fa-calendar"></i>{% trans 'Дата' %}</span>
                       <input type="text" id="datepicker" value='03/10/2014' class="datepicker__input">
                     </div>
                     <!-- date -->
@@ -96,42 +98,100 @@
                     
                     <!-- hiden maps with multiple locator-->
                    
-                    <h2 class="page-heading">comments (15)</h2>
+                    <h2 class="page-heading">{% trans 'комментарий' %} {{leng}}</h2>
+                    {% if user.is_authenticated %}
 
                     <div class="comment-wrapper">
 
 
-                        <form action="" method='post'>
-                           
+                        <form action="" method='post' >
+
                             {% csrf_token %}
+                            <input type="hidden" name="parent" id="contactparent" value="">
+                            <div class="form-group editContent">
+                                <label for="contactcomment" class="editContent">
+                                    Ваш комментарий *
+                                </label>
+                                <textarea class="form-control border" rows="5" name="text"
+                                          id="contactcomment" required=""></textarea>
+                            </div>
+                            <div class="d-sm-flex">
+                                
+                               
+                            </div>
+                            <button type='submit' >{% trans 'добавить комментарий' %}</button>
+                        </form>
+                           
+                            <!-- {% csrf_token %}
     
                             {{ form.as_p }}
     
 
                             <button type='submit' >add comment</button>
-                        </form>
+                        </form> -->
 
+                        <!-- strt -->
+                        {% for review in movie.get_review %}
+                        <div class="media py-5">
+                            <div class="media-body mt-4">
+                                <h5 class="mt-0 editContent">
+                                    <h6 style="color: grey;" class="comment__date">опубликованно :  {{review.time_pub}}</h6>
+                                         {{ review.auth }}
+                                </h5>
+                                <p class="mt-2 editContent">
+                                    {{ review.text }}
+                                </p>
+                                <a style="background-color: rgb(24, 14, 176); color:white;" href="#formReview"
+                                   onclick="addReview('{{ review.auth }}', '{{ review.id }}')">Ответить </a> <hr>
+                                {% for rew in review.reviews_set.all %}
+                                <div style="margin-left: 100px;">
+                                    <div class="media mt-5 editContent">
+                                        
+                                        <div class="media-body">
+                                            <h5 class="mt-0 editContent">{{ rew.auth }}</h5><h6 style="color: grey;" class="comment__date">опубликованно : {{rew.time_pub}}</h6>
+                                            <p class="mt-2 editContent">{{ rew.text }}</p><hr>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                
+                <script>
+                    function addReview(name, id) {
+                        document.getElementById("contactparent").value = id;
+                        document.getElementById("contactcomment").innerText = `${name}, `
+                    }
+                </script>
 
+                        <!-- end -->
 
-                        <div class="comment-sets">
+                        <!-- <div class="comment-sets">
                         {% for comm in review %}
                         <div class="comment">
                             <div class="comment__images">
                                 <img alt='' src="images/comment/avatar.jpg">
                             </div>
 
-                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>{{comm.name}}</a>
+                            <a href='#' class="comment__author"><span class="social-used fa fa-facebook"></span>{{comm.auth}}</a>
                             <p class="comment__date">{{comm.time_pub}}</p>
                             <p class="comment__message"> {{comm.text}}</p>
                         </div>
                         {% endfor %}
+                        {% else %}
+                        <p class="comment__message">Зарегистрируйтесь чтобы оставить коментарий</p>
+
+
+
+                        {% endif %}
 
 
 
                     </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             
 

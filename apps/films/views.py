@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from apps.films.forms import BookingForm,ReviewForm
+from apps.films.forms import *
 from django.db.models import Q
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout, login
+# from services.send_email import send_email
+# from django.core.mail import send_mail
+
 
 from apps.films.models import *
 from .forms import *
@@ -39,13 +42,17 @@ def logout_user(request):
 
 def detailmovie(request,id):
     movie=Movie.objects.get(id=id)
-    review=Reviews.objects.filter(movie_id=movie)[:5]
+    review=Reviews.objects.filter(movie_id=movie)
+    leng=len(review)
     if request.method == 'POST':
         form = ReviewForm(request.POST)
 
         if form.is_valid():
               form = form.save(commit=False)
+              if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
               form.movie = movie
+              form.auth=request.user
               form.save()
               return redirect('home')
 
@@ -56,10 +63,77 @@ def detailmovie(request,id):
     context={
         'movie':movie,
         'form': form,
-        'review':review
+        'review':review,
+        'leng':leng
         }
     return render(request,'cinematempl/movie_page_detail.html',context)
 
+
+
+# def contact(request):
+    # if request.method == 'POST':
+    #     message_name=request.POST['user-name']
+    #     message_email=request.POST['user-email']
+    #     message=request.POST['user-message']
+
+    #     send_mail(
+    #         message_name,
+    #         message,
+    #         message_email,
+    #         ['zarinakudajberdikyzy@gmail.com'],
+    #     )
+    #     return render(request, 'cinematempl/contact.html', {'message_name':message_name}) 
+    # else:
+    #     return render(request, 'cinematempl/contact.html', {}) 
+
+
+# def contact(request):
+
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             send_email(
+#                 form.cleaned_data['name'],
+#                 form.cleaned_data['email'],
+#                 form.cleaned_data['message'],
+#                 form.cleaned_data['password']
+#                 )
+            
+#     else:
+#         form = ContactForm()
+#     return render(request, 'cinematempl/contact.html', {'form': form})  
+
+def contact(request):
+    if request.method == 'POST':
+        # contact=Contact()
+        # user_name=request.POST.get('user-name')
+        # user_email=request.POST.get('user-email')
+        # user_message=request.POST.get('user-message')
+        # print('add')
+        # contact.name=user_name
+        # contact.email=user_email
+        # contact.message=user_message
+        # contact.save()
+        # print('added')
+
+        form = ContactForm(request.POST)
+        if form.is_valid():
+                form.save()
+                return redirect('contact')
+    else:
+        form = ContactForm()
+
+    return render(request, 'cinematempl/contact.html', {'form':form})  
+
+# class ContactForm(generic.CreateView):
+#     form_class= ContactForm
+#     template_name='cinematempl/contact.html'
+    # success_url=reverse_lazy('contact')
+
+    # def form_valid(self,form):
+    #     user=form.save()
+    #     login(self.request,user)
+    #     return redirect('contact')
 
 
 
@@ -79,18 +153,28 @@ class News_views(generic.ListView):
     template_name='cinematempl/news.html'
     context_object_name='news'
 
-class Movies(generic.ListView):
-    model=News
-    template_name='cinematempl/movie_list.html'
+# class Movies(generic.ListView):
+#     model=News
+#     template_name='cinematempl/movie_list.html'
 
-    def get_context_data(self, **kwargs):
-        context=super().get_context_data(**kwargs)
-        context['movies']=Movie.objects.all()
+#     def get_context_data(self, **kwargs):
+#         context=super().get_context_data(**kwargs)
+#         context['movies']=Movie.objects.all()
 
 def movies(request):
-    movies=Movie.objects.all()
-    context={'movies':movies}
-    return render(request,'cinematempl/movie_list.html',context)
+    if 'search_button' in request.GET:
+        word = request.GET.get('search-input')
+        movies = Movie.objects.filter(Q(name__icontains=word))
+        return render(request, 'cinematempl/movie_list.html', {'movies': movies})
+    else:
+        movies=Movie.objects.all()
+    return render(request,'cinematempl/movie_list.html',{'movies': movies})
+    
+
+# def movies(request):
+#     movies=Movie.objects.all()
+#     context={'movies':movies}
+#     return render(request,'cinematempl/movie_list.html',context)
 
 
 
@@ -101,7 +185,8 @@ class News_detail(generic.DetailView):
     context_object_name='news'
 
 
-
+def error_404(request,exception):
+    return render(request,'cinematempl/404.html')
 
 
 

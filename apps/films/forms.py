@@ -16,9 +16,18 @@ class BookingForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Reviews
-        fields = ['email', 'name', 'text', 'rating']
-        
-
+        readonly_fields=('auth',)
+        fields = ['text', 'rating']
+    
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model=Contact
+        fields=['name','email','message']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'input','placeholder':'your name'}),
+            'email': forms.EmailInput(attrs={'class': 'input','placeholder':'your email'}),
+            'message': forms.TextInput(attrs={'class':'input','placeholder':'your message'})
+        }
 
 
 class RegisterUserForm(UserCreationForm):

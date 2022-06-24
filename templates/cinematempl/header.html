@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n  %}
+
 <div class="wrapper">
     <!-- Banner -->
     
@@ -26,12 +28,13 @@
                 <ul id="navigation">
                     <li>
                         <span class="sub-nav-toggle plus"></span>
-                        <a href="#">Pages</a>
+                        <a href="#">{% trans 'Страницы' %} </a>
                         <ul>
-                            <li class="menu__nav-item"><a href="{% url 'home' %}">Home</a></li>
-                            <li class="menu__nav-item"><a href="{% url 'book' %}">Book a ticket</a></li>
-                            <li class="menu__nav-item"><a href="{% url 'news' %}"> News</a></li>
-                            <li class="menu__nav-item"><a href="{% url 'movie_list' %}">Movies</a></li>
+                            <li class="menu__nav-item"><a href="{% url 'home' %}">{% trans 'Главная страница' %} </a></li>
+                            <li class="menu__nav-item"><a href="{% url 'book' %}">{% trans 'Забронировать билет' %} </a></li>
+                            <li class="menu__nav-item"><a href="{% url 'news' %}">{% trans 'Новости' %} </a></li>
+                            <li class="menu__nav-item"><a href="{% url 'movie_list' %}">{% trans 'Фильмы' %} </a></li>
+                            <li class="menu__nav-item"><a href="{% url 'contact' %}">{% trans 'Свяжитесь с нами ' %} </a></li>
                         </ul>
                     </li>
                     
@@ -40,10 +43,10 @@
 
                     <li>
                         <span class="sub-nav-toggle plus"></span>
-                        <a href="#">Mega menu</a>
+                        <a href="#">{% trans 'Меню' %}</a>
                            <ul class="mega-menu container">
                                 <li class="col-md-3 mega-menu__coloum">
-                                    <h4 class="mega-menu__heading">Now in the cinema</h4>
+                                    <h4 class="mega-menu__heading">{% trans 'Сейчас в кинотеатре' %}</h4>
                                      <ul class="mega-menu__list">
                                          {% for movie in movie_all %}
                                         <li class="mega-menu__nav-item"><a href="{% url 'detail_movie' movie.id %}">{{movie.name}}</a></li>
@@ -53,7 +56,7 @@
                                     
                                   
                                   <li class="col-md-3 mega-menu__coloum">
-                                    <h4 class="mega-menu__heading">Ending soon</h4>
+                                    <h4 class="mega-menu__heading">{% trans 'Скоро заканчивается' %}</h4>
                                       <ul class="mega-menu__list">
                                           {% for ending  in endingsoon %}
                                         <li class="mega-menu__nav-item"><a href="#">{{ending.name}}</a></li>
@@ -79,18 +82,33 @@
                         {{user.username}}
                     </a>
                         <ul class="auth__function">
-                            <li><a href="{% url 'logout' %}" class="auth__function-item">logout</a></li>
+                            <li><a href="{% url 'logout' %}" class="auth__function-item">{% trans 'Выйти' %}</a></li>
                         </ul>
                         {% else %}
-                        guest
+                        {% trans 'Гость' %}
                         <ul class="auth__function">
-                            <li><a href="{% url 'login' %}" class="auth__function-item">login </a></li>
-                            <li><a href="{% url 'register' %}" class="auth__function-item">register</a></li>
+                            <li><a href="{% url 'login' %}" class="auth__function-item">{% trans 'Зайти' %} </a></li>
+                            <li><a href="{% url 'register' %}" class="auth__function-item">{% trans 'Регистрация' %}</a></li>
                         </ul>
                         {% endif %}
 
                     </div>
-                        <a href="{% url 'book' %}" class="btn btn-md btn--warning btn--book ">Book a ticket</a>
+
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                            selected{% endif %}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" value="Go">
+                        </form>
             </div>
 
         </div>

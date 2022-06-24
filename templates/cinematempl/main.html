@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n  %}
+
 <!-- Slider -->
 
 
@@ -56,7 +58,7 @@
     
     <div class="clearfix"></div>
 
-    <h2 id='target' class="page-heading heading--outcontainer">Now in the cinema</h2>
+    <h2 id='target' class="page-heading heading--outcontainer"> {% trans 'Сейчас в кинотеатре' %}</h2>
                 
                 <!-- Movie variant with time -->
                 {% for m in movie_all %}
@@ -92,7 +94,7 @@
     </div>
 
     <div class="col-sm-12">
-        <h2 class="page-heading">Latest news</h2>
+        <h2 class="page-heading">{% trans 'Последние новости'%}</h2>
         {% for n in news  %}
         
 

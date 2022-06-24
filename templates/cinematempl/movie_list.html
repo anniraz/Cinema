@@ -1,6 +1,18 @@
 {% extends 'home_base.html' %}
 
 {% block main %}
+<div style="margin-top: 100px;"></div>
+<div class="mega-select" style="margin-left: 100px;">
+    <span class="mega-select__point">Search by</span>
+    <ul class="mega-select__sort">
+        <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='film-category'>Title</a></li>
+    </ul>
+
+  <form >
+    <input name="search-input" type='text' class="select__field">
+
+    <button name="search_button">  <a href="#" class="btn btn-md btn--danger film-category"><span class="hidden-exrtasm">search</span></a></button>
+  </form>   
 
 {% for m in movies %}
 

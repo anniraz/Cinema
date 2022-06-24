@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth import get_user_model
+
 
 # Create your models here.
 
@@ -55,6 +57,9 @@ class Movie(models.Model):
     
     def get_absolute_url(self):
         return reverse("detail_movie", kwargs={"id": self.id})
+
+    def get_review(self):
+        return self.reviews_set.filter(parent__isnull=True)
     
     class Meta:
         ordering=['-pk']
@@ -108,6 +113,7 @@ class Booking(models.Model):
     # class Meta:
     #     ordering = ["-value"]
 
+User = get_user_model()
 class Reviews(models.Model):
 
     RATING = (
@@ -117,15 +123,18 @@ class Reviews(models.Model):
         (4, 4),
         (5, 5),
     )
-    email = models.EmailField()
-    name = models.CharField("Имя", max_length=100)
+    
+    auth=models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField("Сообщение", max_length=5000)
-    rating = models.IntegerField(choices=RATING, max_length=11)
+    rating = models.IntegerField(choices=RATING ,blank=True, null=True)
     time_pub = models.DateTimeField(auto_now_add=True)
     movie = models.ForeignKey(Movie, verbose_name="фильм", on_delete=models.CASCADE)
+    parent = models.ForeignKey(
+        'self', verbose_name="Родитель", on_delete=models.SET_NULL, blank=True, null=True
+    )
 
     def __str__(self):
-        return f"{self.name} - {self.movie}"
+        return f"{self.auth} - {self.movie}"
 
     class Meta:
 
@@ -165,7 +174,13 @@ class News(models.Model):
         verbose_name_plural='Новости'
         ordering=['-pk']
 
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField() 
 
+    def __str__(self):
+        return self.name
 
 
     

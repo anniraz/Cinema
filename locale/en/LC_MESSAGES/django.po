@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-24 15:48+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/cinematempl/header.html:31
+msgid "Страницы"
+msgstr "Pages"
+
+#: templates/cinematempl/header.html:33
+msgid "Главная страница"
+msgstr "Home"
+
+#: templates/cinematempl/header.html:34
+#: templates/cinematempl/movie_page_detail.html:43
+msgid "Забронировать билет"
+msgstr "Book a Ticket"
+
+#: templates/cinematempl/header.html:35
+msgid "Новости"
+msgstr "News"
+
+#: templates/cinematempl/header.html:36
+msgid "Фильмы"
+msgstr "Movies"
+
+#: templates/cinematempl/header.html:37
+msgid "Свяжитесь с нами "
+msgstr "Contact us"
+
+#: templates/cinematempl/header.html:46
+msgid "Меню"
+msgstr "Menu"
+
+#: templates/cinematempl/header.html:49 templates/cinematempl/main.html:61
+msgid "Сейчас в кинотеатре"
+msgstr "Now in the cinema"
+
+#: templates/cinematempl/header.html:59
+msgid "Скоро заканчивается"
+msgstr "Ending soon"
+
+#: templates/cinematempl/header.html:85
+msgid "Выйти"
+msgstr "Logout"
+
+#: templates/cinematempl/header.html:88
+msgid "Гость"
+msgstr "Guest"
+
+#: templates/cinematempl/header.html:90
+msgid "Зайти"
+msgstr "Login"
+
+#: templates/cinematempl/header.html:91
+msgid "Регистрация"
+msgstr "Register"
+
+#: templates/cinematempl/main.html:97
+msgid "Последние новости"
+msgstr "Latest News"
+
+#: templates/cinematempl/movie_page_detail.html:25
+msgid "Страна"
+msgstr "Country"
+
+#: templates/cinematempl/movie_page_detail.html:26
+msgid "Год"
+msgstr "Year"
+
+#: templates/cinematempl/movie_page_detail.html:27
+msgid "Жанры"
+msgstr "Genre"
+
+#: templates/cinematempl/movie_page_detail.html:33
+msgid "Директор"
+msgstr "Director"
+
+#: templates/cinematempl/movie_page_detail.html:36
+msgid "Актеры"
+msgstr "Actors"
+
+#: templates/cinematempl/movie_page_detail.html:39
+msgid "Возрастное ограничение"
+msgstr "Age restriction"
+
+#: templates/cinematempl/movie_page_detail.html:63
+msgid "Трейлер"
+msgstr "Treiler"
+
+#: templates/cinematempl/movie_page_detail.html:77
+msgid "Дата"
+msgstr "Date"
+
+#: templates/cinematempl/movie_page_detail.html:101
+msgid "комментарий"
+msgstr "Comments"
+
+#: templates/cinematempl/movie_page_detail.html:122
+msgid "добавить комментарий"
+msgstr "add comment"
+
+#: templates/cinematempl/today_best_choice.html:7
+msgid "Сегодня хороший выбор"
+msgstr "Today Best Choice"
+
+#: templates/cinematempl/today_best_choice.html:125
+msgid "ПРОВЕРЬТЕ ВСЕ ФИЛЬМЫ, КОТОРЫЕ СЕЙЧАС ВОСПРОИЗВОДЯТСЯ"
+msgstr "CHECK ALL MOVIES NOW PLAYING"
+

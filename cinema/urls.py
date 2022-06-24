@@ -27,6 +27,8 @@ urlpatterns = [
     path('',include('apps.home.urls')),
     path('',include('apps.films.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('i18n/',include('django.conf.urls.i18n')),
+
    
     
 ]

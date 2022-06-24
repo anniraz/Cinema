@@ -1,0 +1,73 @@
+{% extends 'home_base.html' %}
+
+
+{% block main %}
+
+        
+        <!-- Main content -->
+        <section class="container">
+            <h2 class="page-heading heading--outcontainer">Contact</h2>
+            <div class="contact">
+                <p class="contact__title">You have any questions or need help, <br><span class="contact__describe">don’t be shy and contact us</span></p>
+                <span class="contact__mail">support@amovie.com</span>
+                <span class="contact__tel">support@amovie.com</span>
+            </div>
+        </section>
+
+
+        <!-- <div class="contact-form-wrapper">
+            <div class="container">
+                <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                    <form id='contact-form' class="form row" method='post' novalidate="" action="{% url 'contact' %}">
+                        <p class="form__title">Drop us a line</p>
+                        {% csrf_token %}
+                        {{form.as_p}} -->
+                        <!-- <div class="col-sm-6">
+                            <input type='text' placeholder='Your name' name='user-name'   class="form__name">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type='email' placeholder='Your email' name='user-email' class="form__mail">
+                        </div>
+                    
+                        <div class="col-sm-12">
+                            <textarea placeholder="Your message"  name="user-message" class="form__message"></textarea>
+                        </div> -->
+                        <!-- <button type="submit" class='btn btn-md btn--danger'>send message</button>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+        <div class="contact-form-wrapper">
+            <div class="container">
+                <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+        <!-- <div style="padding:50px  100px; background-color:rgb(250, 177, 42);" > -->
+            
+            <!-- <h3 class="form__title">Drop us a line
+            </h3> <br> -->
+            <form id='contact-form' class="form row" method='post' novalidate="" action="{% url 'contact' %}">
+                <p class="form__title">Drop us a line</p>
+
+                {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit" class='btn btn-md btn--danger'>send message</button>
+        </form>
+        <!-- </div> -->
+    </div>
+</div>
+</div>
+
+
+        <section class="container">
+            <div class="contact">
+                <p class="contact__title">Trying to find our location? <br> <span class="contact__describe">we are here</span></p>
+            </div>
+        </section>
+
+        <div id='location-map' class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6061.963442715609!2d72.79548695390625!3d40.56408090000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bdabdf7878f34f%3A0xac324ba4d77758dd!2zS2lub2JveCDQodC10LzQtdGC0LXQuQ!5e0!3m2!1sru!2skg!4v1655930632477!5m2!1sru!2skg" width="1400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+        </div>
+        {% endblock  %}
+
+       

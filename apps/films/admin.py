@@ -1,11 +1,13 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
+
 
 from .models import *
 
 # Register your models here.
 
 
-class MovieAdmin(admin.ModelAdmin):
+class MovieAdmin(TranslationAdmin):
     list_display = ('name', 'year','id')
     prepopulated_fields = {'url':('name',)}
 
@@ -23,15 +25,14 @@ class TicketAdmin(admin.ModelAdmin):
 admin.site.register(Ticket,TicketAdmin)
 
 
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(TranslationAdmin):
         prepopulated_fields = {'url':('title',)}
-
-
-
 
 admin.site.register(News,NewsAdmin)
 
-admin.site.register(Genre)
+
+
+admin.site.register(Genre )
 admin.site.register(Actor)
 admin.site.register(Director)
 admin.site.register(Sites)
@@ -40,3 +41,4 @@ admin.site.register(Reviews)
 admin.site.register(Date)
 admin.site.register(ComingSoon)
 admin.site.register(EndingSoon)
+admin.site.register(Contact)

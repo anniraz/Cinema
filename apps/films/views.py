@@ -118,8 +118,8 @@ def contact(request):
 
         form = ContactForm(request.POST)
         if form.is_valid():
-                form.save()
-                return redirect('contact')
+            form.save()
+            return redirect('contact')
     else:
         form = ContactForm()
 
@@ -137,10 +137,10 @@ def contact(request):
 
 
 
-class BookingForm(generic.CreateView):
-    form_class=BookingForm
-    template_name='cinematempl/book.html'
-    success_url=reverse_lazy('book')
+# class BookingForm(generic.CreateView):
+#     form_class=BookingForm
+#     template_name='cinematempl/book.html'
+#     success_url=reverse_lazy('book')
 
 
     # def get_context_data(self, **kwargs):
@@ -195,9 +195,12 @@ def error_404(request,exception):
 #     context={'movies':movies}
 #     return render(request,'cinema_booking/book1.html',context)
 
-# def booking2(request):
-#     sits=Sites.objects.all()
-#     context={'sits':sits}
+# def booking2(request,id):
+
+#     sits=Sites.objects.get(movie_name__id=id)
+#     a=[i for i in range(sits.sites_number)]
+#     # book=Booking.objects.get(movie__id=id)
+#     context={'sits':sits,'a':a}
 #     return render(request,'cinema_booking/book2.html',context)
 
 # def booking3(request):

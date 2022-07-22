@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from .models import Setting
+from .models import *
 
 # Register your models here.
 
 
-admin.site.register(Setting)
+admin.site.register(CinemaSettings)
+admin.site.register(Rooms)
 

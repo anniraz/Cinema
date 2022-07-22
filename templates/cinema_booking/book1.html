@@ -18,42 +18,29 @@
                 </div>
 
             <h2 class="page-heading heading--outcontainer">Choose a movie</h2>
+
+            {% for m in movies %}
+            <div class="movie movie--test movie--test--dark movie--test--left">
+                <div class="movie__images">
+                    <a href="#" class="movie-beta__link">
+                        <img alt='' style="object-fit: cover;" height="200px" width="400px" src="{{m.poster.url}}">
+                    </a>
+                </div>
+
+                <div class="movie__info">
+                    <a href="{%  url 'booking2' m.id %}" class="movie__title">{{m.name}}  </a>
+
+
+                    <p class="movie__option"><a href="#"> {% for i in m.genre.all %} | <a href="#">{{i}}</a> | {% endfor %}</p>
+                                 
+                </div>
+            </div>
+        {% endfor %}
         </section>
         
 
 
-        <section class="container">
-            <div class="col-sm-12">
-                <div class="choose-indector choose-indector--film">
-                    <strong>Choosen: </strong><span class="choosen-area"></span>
-                </div>
-
-    
-
-
-                <div class="time-select time-select--wide">
-                    {% for d in movies %}
-                    <div class="time-select__group group--first">
-                        <div class="col-sm-3">
-                            <p class="time-select__place">{{d.name}}</p>
-                        </div>
-                            <ul class="col-sm-6 items-wrap">
-                                {% for dat in d.date.all %}
-                               <a href="{% url   'booking2'  %}"> <li class="time-select__item"  data-time='09:40'>{{dat}}</li></a>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        {% endfor %}
-
-                        
-                     
-                <div class="choose-indector choose-indector--time">
-                    <strong>Choosen: </strong><span class="choosen-area"></span>
-                </div>
-            </div>
-
-        </section>
-
+       
         <div class="clearfix"></div>
 
         <form id='film-and-time' class="booking-form" method='get' action='book2.html'>
@@ -72,7 +59,7 @@
                         <span class="arrow__info"></span>
                     </a>
                     <a href="book2.html" class="booking-pagination__next">
-                       <a href="{% url   'booking2'  %}"> <span class="arrow__text arrow--next">next step</span></a>
+                       <a href=""> <span class="arrow__text arrow--next">next step</span></a>
                         <span class="arrow__info">choose a sit</span>
                     </a>
             </div>

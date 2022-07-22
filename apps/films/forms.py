@@ -4,15 +4,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
-class BookingForm(forms.ModelForm):
-
-    class Meta:
-        model=Booking
-        fields=['name','email','ticket','sites','ticket_choice']
-
-
-
-
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Reviews

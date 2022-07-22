@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     # apps
     'apps.films',
-    'apps.home'
+    'apps.home',
+    'apps.booking',
 ]
 
 MIDDLEWARE = [

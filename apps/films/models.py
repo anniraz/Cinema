@@ -45,8 +45,7 @@ class Movie(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE , verbose_name='категории')
     director=models.ManyToManyField(Director ,verbose_name='директор' , related_name='director')
     actors=models.ManyToManyField(Actor ,verbose_name='актеры', related_name='actors')
-    age_restriction=models.IntegerField(verbose_name='возрастное ограничение')
-    date=models.ManyToManyField('Date',verbose_name='дата и время ')
+    age_restriction=models.PositiveIntegerField(verbose_name='возрастное ограничение')
     description=models.TextField(verbose_name='описание')
     poster=models.ImageField(upload_to='films_image/',verbose_name='постер')
     trailer=models.FileField(upload_to='trailer/',verbose_name='трейлер')
@@ -65,53 +64,6 @@ class Movie(models.Model):
         ordering=['-pk']
     
     
-    
-class Date(models.Model):
-
-    date=models.DateTimeField( blank=True,null=True)
-
-
-    def __str__(self):
-        return f'{self.date} '
-
-
-class Ticket(models.Model):
-
-    price=models.IntegerField(blank=True,null=True ,verbose_name='цена билета для взрослых' )
-    price_child=models.IntegerField(blank=True,null=True ,verbose_name='цена билета для детей ')
-    movie_name=models.ForeignKey(Movie , on_delete=models.CASCADE)
-
-
-    def __str__(self):
-        return f'{self.movie_name}  для взрослых {self.price} для детей {self.price_child} '
-
-
-class Sites(models.Model):
-
-    row=models.CharField(max_length=1 )
-    sites_number=models.IntegerField()
-    movie_name=models.ForeignKey(Movie ,on_delete=models.CASCADE )
-    
-    def __str__(self) :
-        return f'{self.row}{self.sites_number}'
-
-class Booking(models.Model):
-
-    CHOICE=(('Детский','Детский'),('Взрослый','Взрослый'))
-    name=models.CharField(max_length=200)
-    email=models.EmailField(null=True,blank=True)
-    ticket=models.ForeignKey(Ticket,on_delete=models.CASCADE)
-    sites=models.ForeignKey(Sites,on_delete=models.CASCADE)
-    ticket_choice=models.CharField(max_length=50,choices=CHOICE , verbose_name='Билет')
-
-    def __str__(self):
-        return self.name
-    
-
-
-
-    # class Meta:
-    #     ordering = ["-value"]
 
 User = get_user_model()
 class Reviews(models.Model):

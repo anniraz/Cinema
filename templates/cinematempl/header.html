@@ -10,7 +10,7 @@
         <div class="container">
             <!-- Logo link-->
             <a href='index.html' class="logo">
-                <img alt='logo' src="{% static 'assets/images/logo.png'%}">
+                <img alt='logo' src="{{settings.logo.url}}">
             </a>
             
             <!-- Main website navigation-->
@@ -31,7 +31,7 @@
                         <a href="#">{% trans 'Страницы' %} </a>
                         <ul>
                             <li class="menu__nav-item"><a href="{% url 'home' %}">{% trans 'Главная страница' %} </a></li>
-                            <li class="menu__nav-item"><a href="{% url 'book' %}">{% trans 'Забронировать билет' %} </a></li>
+                            <li class="menu__nav-item"><a href="{% url 'booking1' %}">{% trans 'Забронировать билет' %} </a></li>
                             <li class="menu__nav-item"><a href="{% url 'news' %}">{% trans 'Новости' %} </a></li>
                             <li class="menu__nav-item"><a href="{% url 'movie_list' %}">{% trans 'Фильмы' %} </a></li>
                             <li class="menu__nav-item"><a href="{% url 'contact' %}">{% trans 'Свяжитесь с нами ' %} </a></li>

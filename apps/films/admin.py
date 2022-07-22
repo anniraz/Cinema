@@ -19,10 +19,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category,CategoryAdmin)
 
-class TicketAdmin(admin.ModelAdmin):
-    list_display=('movie_name','price','price_child')
+# class TicketAdmin(admin.ModelAdmin):
+#     list_display=('movie_name','price','price_child')
 
-admin.site.register(Ticket,TicketAdmin)
+# admin.site.register(Ticket,TicketAdmin)
 
 
 class NewsAdmin(TranslationAdmin):
@@ -35,10 +35,7 @@ admin.site.register(News,NewsAdmin)
 admin.site.register(Genre )
 admin.site.register(Actor)
 admin.site.register(Director)
-admin.site.register(Sites)
-admin.site.register(Booking)
 admin.site.register(Reviews)
-admin.site.register(Date)
 admin.site.register(ComingSoon)
 admin.site.register(EndingSoon)
 admin.site.register(Contact)
